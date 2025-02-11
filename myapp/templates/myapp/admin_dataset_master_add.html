@@ -1,0 +1,173 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}New Dataset Add{% endblock %}
+{% block body %}
+<center>
+    <h2>New Dataset Add</h2>
+	<div class="container">
+		{% if msg %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  			<strong>{{msg}}..!</strong>
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+		</div>
+		{% endif %}
+	
+    <form role="form" name="frm" action="{% url 'admin_dataset_master_add' %}" method="post">
+        {% csrf_token %}
+		<div class="form-group">
+			<label >Age</label>
+	        <input type="text"  class="form-control" id="Age" name="Age" placeholder="Enter Age">
+		</div>
+		<div class="form-group">
+			<label >Attrition</label>
+	        <input type="text"  class="form-control" id="Attrition" name="Attrition" placeholder="Enter Attrition">
+		</div>
+		<div class="form-group">
+			<label >BusinessTravel</label>
+	        <input type="text"  class="form-control" id="BusinessTravel" name="BusinessTravel" placeholder="Enter BusinessTravel">
+		</div>
+		<div class="form-group">
+			<label >DailyRate</label>
+	        <input type="text"  class="form-control" id="DailyRate" name="DailyRate" placeholder="Enter DailyRate">
+		</div>
+		<div class="form-group">
+			<label >Department</label>
+	        <input type="text"  class="form-control" id="Department" name="Department" placeholder="Enter Department">
+		</div>
+		<div class="form-group">
+			<label >DistanceFromHome</label>
+	        <input type="text"  class="form-control" id="DistanceFromHome" name="DistanceFromHome" placeholder="Enter DistanceFromHome">
+		</div>
+		<div class="form-group">
+			<label >Education</label>
+	        <input type="text"  class="form-control" id="Education" name="Education" placeholder="Enter Education">
+		</div>
+		<div class="form-group">
+			<label >EducationField</label>
+	        <input type="text"  class="form-control" id="EducationField" name="EducationField" placeholder="Enter EducationField">
+		</div>
+		<div class="form-group">
+			<label >EmployeeCount</label>
+	        <input type="text"  class="form-control" id="EmployeeCount" name="EmployeeCount" placeholder="Enter EmployeeCount">
+		</div>
+		<div class="form-group">
+			<label >EmployeeNumber</label>
+	        <input type="text"  class="form-control" id="EmployeeNumber" name="EmployeeNumber" placeholder="Enter EmployeeNumber">
+		</div>
+		<div class="form-group">
+			<label >EnvironmentSatisfaction</label>
+	        <input type="text"  class="form-control" id="EnvironmentSatisfaction" name="EnvironmentSatisfaction" placeholder="Enter EnvironmentSatisfaction">
+		</div>
+
+		<div class="form-group">
+			<label >Gender</label>
+	        <input type="text"  class="form-control" id="Gender" name="Gender" placeholder="Enter Gender">
+		</div>
+		<div class="form-group">
+			<label >HourlyRate</label>
+	        <input type="text"  class="form-control" id="HourlyRate" name="HourlyRate" placeholder="Enter HourlyRate">
+		</div>
+		<div class="form-group">
+			<label >JobInvolvement</label>
+	        <input type="text"  class="form-control" id="JobInvolvement" name="JobInvolvement" placeholder="Enter JobInvolvement">
+		</div>
+		<div class="form-group">
+			<label >JobLevel</label>
+	        <input type="text"  class="form-control" id="JobLevel" name="JobLevel" placeholder="Enter JobLevel">
+		</div>
+		<div class="form-group">
+			<label >JobRole</label>
+	        <input type="text"  class="form-control" id="JobRole" name="JobRole" placeholder="Enter JobRole">
+		</div>
+		<div class="form-group">
+			<label >JobSatisfaction</label>
+	        <input type="text"  class="form-control" id="JobSatisfaction" name="JobSatisfaction" placeholder="Enter JobSatisfaction">
+		</div>
+
+		<div class="form-group">
+			<label >MaritalStatus</label>
+	        <input type="text"  class="form-control" id="MaritalStatus" name="MaritalStatus" placeholder="Enter MaritalStatus">
+		</div>
+		<div class="form-group">
+			<label >MonthlyIncome</label>
+	        <input type="text"  class="form-control" id="MonthlyIncome" name="MonthlyIncome" placeholder="Enter MonthlyIncome">
+		</div>
+		<div class="form-group">
+			<label >MonthlyRate</label>
+	        <input type="text"  class="form-control" id="MonthlyRate" name="MonthlyRate" placeholder="Enter MonthlyRate">
+		</div>
+		<div class="form-group">
+			<label >NumCompaniesWorked</label>
+	        <input type="text"  class="form-control" id="NumCompaniesWorked" name="NumCompaniesWorked" placeholder="Enter NumCompaniesWorked">
+		</div>
+		<div class="form-group">
+			<label >Over18</label>
+	        <input type="text"  class="form-control" id="Over18" name="Over18" placeholder="Enter Over18">
+		</div>
+		<div class="form-group">
+			<label >OverTime</label>
+	        <input type="text"  class="form-control" id="OverTime" name="OverTime" placeholder="Enter OverTime">
+		</div>
+		<div class="form-group">
+			<label >PercentSalaryHike</label>
+	        <input type="text"  class="form-control" id="PercentSalaryHike" name="PercentSalaryHike" placeholder="Enter PercentSalaryHike">
+		</div>
+		<div class="form-group">
+			<label >PerformanceRating</label>
+	        <input type="text"  class="form-control" id="PerformanceRating" name="PerformanceRating" placeholder="Enter PerformanceRating">
+		</div>
+<!-- # 3. dataset_master - id,,,,,,,,,, -->
+		
+		<div class="form-group">
+			<label >RelationshipSatisfaction</label>
+	        <input type="text"  class="form-control" id="RelationshipSatisfaction" name="RelationshipSatisfaction" placeholder="Enter RelationshipSatisfaction">
+		</div>
+		<div class="form-group">
+			<label >StandardHours</label>
+	        <input type="text"  class="form-control" id="StandardHours" name="StandardHours" placeholder="Enter StandardHours">
+		</div>
+		<div class="form-group">
+			<label >StockOptionLevel</label>
+	        <input type="text"  class="form-control" id="StockOptionLevel" name="StockOptionLevel" placeholder="Enter StockOptionLevel">
+		</div>
+		<div class="form-group">
+			<label >TotalWorkingYears</label>
+	        <input type="text"  class="form-control" id="TotalWorkingYears" name="TotalWorkingYears" placeholder="Enter TotalWorkingYears">
+		</div>
+		<div class="form-group">
+			<label >TrainingTimesLastYear</label>
+	        <input type="text"  class="form-control" id="TrainingTimesLastYear" name="TrainingTimesLastYear" placeholder="Enter TrainingTimesLastYear">
+		</div>
+		<div class="form-group">
+			<label >WorkLifeBalance</label>
+	        <input type="text"  class="form-control" id="WorkLifeBalance" name="WorkLifeBalance" placeholder="Enter WorkLifeBalance">
+		</div>
+		<div class="form-group">
+			<label >YearsAtCompany</label>
+	        <input type="text"  class="form-control" id="YearsAtCompany" name="YearsAtCompany" placeholder="Enter YearsAtCompany">
+		</div>
+		
+		<div class="form-group">
+			<label >YearsInCurrentRole</label>
+	        <input type="text"  class="form-control" id="YearsInCurrentRole" name="YearsInCurrentRole" placeholder="Enter YearsInCurrentRole">
+		</div>
+		<div class="form-group">
+			<label >YearsSinceLastPromotion</label>
+	        <input type="text"  class="form-control" id="YearsSinceLastPromotion" name="YearsSinceLastPromotion" placeholder="Enter YearsSinceLastPromotion">
+		</div>
+		<div class="form-group">
+			<label >YearsWithCurrManager</label>
+	        <input type="text"  class="form-control" id="YearsWithCurrManager" name="YearsWithCurrManager" placeholder="Enter YearsWithCurrManager">
+		</div>
+		
+		
+		<button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

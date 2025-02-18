@@ -1,0 +1,7 @@
+django==4
+pandas
+scikit-learn
+numpy
+matplotlib
+seaborn
+#xgboost

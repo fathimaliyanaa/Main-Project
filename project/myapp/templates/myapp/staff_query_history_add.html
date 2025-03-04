@@ -1,0 +1,335 @@
+{% extends 'myapp/staff_base.html' %}
+{% load static %}
+{% block title %}New Query Add{% endblock %}
+{% block body %}
+<center>
+    <h2>New Query Add</h2>
+	<div class="container">
+		{% if msg %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  			<strong>{{msg}}..!</strong>
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+		</div>
+		{% endif %}
+	
+    <form role="form" name="frm" action="{% url 'staff_query_history_add' %}" method="post">
+        {% csrf_token %}
+		
+				<div class="form-group">
+					<label >staff_name</label>
+							<input type="text"  class="form-control" id="staff_name" name="staff_name" placeholder="Enter staff_name">
+				</div>
+				<div class="form-group">
+					<label >emp_code</label>
+							<input type="text"  class="form-control" id="emp_code" name="emp_code" placeholder="Enter emp_code">
+				</div>
+				41,Travel_Rarely,1102,Sales,1,2,Life Sciences,1,1,2,Female,94,3,2,Sales Executive,4,Single,5993,19479,8,Y,Yes,11,3,1,80,0,8,0,1,6,4,0,5
+				49,No,Travel_Frequently,279,Research & Development,8,1,Life Sciences,1,2,3,Male,61,2,2,Research Scientist,2,Married,5130,24907,1,Y,No,23,4,4,80,1,10,3,3,10,7,1,7
+
+		<div class ="container">
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label >Age</label>
+	        	<input type="text"  class="form-control" id="Age" name="Age" placeholder="Enter Age" required>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label >BusinessTravel</label>
+	        	<select class="form-control" id="BusinessTravel" name="BusinessTravel">
+							<option>Travel_Rarely</option>
+							<option>Travel_Frequently</option>
+						</select>
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label >DailyRate</label>
+	        	<input type="text"  class="form-control" id="DailyRate" name="DailyRate" placeholder="Enter DailyRate">
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label >Department</label>
+	        	<input type="text"  class="form-control" id="Department" name="Department" placeholder="Enter Department">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				
+				<div class="col">
+					<div class="form-group">
+						<label >DistanceFromHome</label>
+	        	<input type="text"  class="form-control" id="DistanceFromHome" name="DistanceFromHome" placeholder="Enter DistanceFromHome">
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label >Education</label>
+	        	<input type="text"  class="form-control" id="Education" name="Education" placeholder="Enter Education">
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label >EducationField</label>
+								<input type="text"  class="form-control" id="EducationField" name="EducationField" placeholder="Enter EducationField">
+					</div>
+					</div>
+					<div class="col">
+					<div class="form-group">
+						<label >EmployeeCount</label>
+								<input type="number"  class="form-control" id="EmployeeCount" name="EmployeeCount" placeholder="Enter EmployeeCount">
+					</div>
+					</div>
+			</div>
+			<div class="row">
+				
+		<div class="col">
+		<div class="form-group">
+			<label >EmployeeNumber</label>
+	        <input type="number"  class="form-control" id="EmployeeNumber" name="EmployeeNumber" placeholder="Enter EmployeeNumber">
+		</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label >EnvironmentSatisfaction</label>
+						<select  class="form-control" id="EnvironmentSatisfaction" name="EnvironmentSatisfaction" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+			</div>
+	</div>
+	<div class="col">
+			<div class="form-group">
+				<label >Gender</label>
+				<select  class="form-control" id="Gender" name="Gender" >
+					<option>Male</option>
+					<option>Female</option>
+					</select>
+			</div>
+			</div>
+			<div class="col">
+			<div class="form-group">
+				<label >HourlyRate</label>
+						<input type="text"  class="form-control" id="HourlyRate" name="HourlyRate" placeholder="Enter HourlyRate">
+			</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+		<div class="form-group">
+			<label >JobInvolvement</label>
+	        <select  class="form-control" id="JobInvolvement" name="JobInvolvement">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+		</div>
+		</div>
+		<div class="col">
+		<div class="form-group">
+			<label >JobLevel</label>
+	        <select  class="form-control" id="JobLevel" name="JobLevel" >
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+		</div>
+		</div>
+		<div class="col">
+		<div class="form-group">
+			<label >JobRole</label>
+	        <input type="text"  class="form-control" id="JobRole" name="JobRole" placeholder="Enter JobRole">
+		</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label >JobSatisfaction</label>
+						<select  class="form-control" id="JobSatisfaction" name="JobSatisfaction" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+			</div>
+	</div>
+		</div>
+		<div class="row">
+		
+<div class="col">
+		<div class="form-group">
+			<label >MaritalStatus</label>
+	        <select   class="form-control" id="MaritalStatus" name="MaritalStatus" >
+						<option>Married</option>
+						<option>Divorced</option>
+						<option>Single</option>
+					</select>
+		</div>
+		</div>
+		<div class="col">
+		<div class="form-group">
+			<label >MonthlyIncome</label>
+	        <input type="text"  class="form-control" id="MonthlyIncome" name="MonthlyIncome" placeholder="Enter MonthlyIncome">
+		</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label >MonthlyRate</label>
+						<input type="text"  class="form-control" id="MonthlyRate" name="MonthlyRate" placeholder="Enter MonthlyRate">
+			</div>
+			</div>
+			<div class="col">
+			<div class="form-group">
+				<label >NumCompaniesWorked</label>
+						<input type="text"  class="form-control" id="NumCompaniesWorked" name="NumCompaniesWorked" placeholder="Enter NumCompaniesWorked">
+			</div>
+			</div>
+				
+	</div>
+		<div class="row">
+		<div class="col">
+		<div class="form-group">
+			<label >Over18</label>
+	        <select   class="form-control" id="Over18" name="Over18" >
+						<option>Y</option>
+						<option>N</option>
+					</select>
+		</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label >OverTime</label>
+						<select class="form-control" id="OverTime" name="OverTime" >
+							<option>Yes</option>
+							<option>No</option>
+						</select>
+	
+			</div>
+			</div>
+			<div class="col">
+			<div class="form-group">
+				<label >PercentSalaryHike</label>
+						<input type="text"  class="form-control" id="PercentSalaryHike" name="PercentSalaryHike" placeholder="Enter PercentSalaryHike">
+			</div>
+			</div>
+			<div class="col">
+			<div class="form-group">
+				<label >Performance Rating</label>
+						<select  class="form-control" id="PerformanceRating" name="PerformanceRating">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+			</div>
+			</div>
+			
+		</div>
+		
+<!-- # 3. dataset_master - id,,,,,,,,,, -->
+		<div class="row">
+			<div class="col">
+		<div class="form-group">
+			<label >Relationship Satisfaction</label>
+	        <select  class="form-control" id="RelationshipSatisfaction" name="RelationshipSatisfaction">
+						<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+					</select>
+		</div>
+		</div>
+		<div class="col">
+		<div class="form-group">
+			<label >StandardHours</label>
+	        <input type="number"  class="form-control" id="StandardHours" name="StandardHours" placeholder="Enter StandardHours">
+		</div>
+		</div>
+		<div class="col">
+					<div class="form-group">
+			<label >StockOptionLevel</label>
+	        <input type="number"  class="form-control" id="StockOptionLevel" name="StockOptionLevel" placeholder="Enter StockOptionLevel">
+		</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label >TotalWorkingYears</label>
+				<input type="number"  class="form-control" id="TotalWorkingYears" name="TotalWorkingYears" placeholder="Enter TotalWorkingYears">
+			</div>
+		</div>
+		</div>
+		<div class="row">
+			
+			<div class="col">
+				<div class="form-group">
+					<label >Training Times Last Year</label>
+	        <input type="number"  class="form-control" id="TrainingTimesLastYear" name="TrainingTimesLastYear" placeholder="Enter TrainingTimesLastYear">
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<label >Work Life Balance</label>
+	        <select  class="form-control" id="WorkLifeBalance" name="WorkLifeBalance">
+						<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<label >Years At Company</label>
+							<input type="number"  class="form-control" id="YearsAtCompany" name="YearsAtCompany" placeholder="Enter YearsAtCompany">
+				</div>
+				</div>
+					<div class="col">
+						<div class="form-group">
+							<label >YearsInCurrentRole</label>
+							<input type="number"  class="form-control" id="YearsInCurrentRole" name="YearsInCurrentRole" placeholder="Enter YearsInCurrentRole">
+						</div>
+					</div>
+		</div>
+		<div class="row">
+			
+			<div class="col">
+				<div class="form-group">
+					<label >YearsSinceLastPromotion</label>
+	        <input type="number"  class="form-control" id="YearsSinceLastPromotion" name="YearsSinceLastPromotion" placeholder="Enter YearsSinceLastPromotion">
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group">
+					<label >YearsWithCurrManager</label>
+	        <input type="number"  class="form-control" id="YearsWithCurrManager" name="YearsWithCurrManager" placeholder="Enter YearsWithCurrManager">
+				</div>
+			</div>
+			<div class="col"></div>
+			<div class="col"></div>
+		</div>
+		
+		
+	</div>
+		<button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

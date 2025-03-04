@@ -132,7 +132,7 @@ class query_history(models.Model):
     YearsWithCurrManager = models.CharField(max_length=100)
     dt = models.CharField(max_length=100)
     tm = models.CharField(max_length=100)
-    result = models.CharField(max_length=100)
+    result = models.CharField(max_length=500)
     status = models.CharField(max_length=100)
 
 # 5. feedback - id, user_id, msg, dt, tm, status

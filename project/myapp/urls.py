@@ -36,6 +36,8 @@ urlpatterns = [
 
     path('admin_staff_feedback_view', views.admin_staff_feedback_view,name='admin_staff_feedback_view'),
 
+    path('admin_dataset_master_train', views.admin_dataset_master_train, name='admin_dataset_master_train'),
+
     path('staff_login', views.staff_login_check, name='staff_login'),
     path('staff_logout', views.staff_logout, name='staff_logout'),
     path('staff_home', views.staff_home, name='staff_home'),
@@ -46,6 +48,10 @@ urlpatterns = [
     path('staff_feedback_view', views.staff_feedback_view,name='staff_feedback_view'),
     path('staff_feedback_delete', views.staff_feedback_delete, name='staff_feedback_delete'),
     path('staff_feedback_add', views.staff_feedback_add,name='staff_feedback_add'),
+
+    path('staff_query_history_add', views.staff_query_history_add, name='staff_query_history_add'),
+    path('staff_query_history_view', views.staff_query_history_view, name='staff_query_history_view'),
+    
 
     path('user_login', views.user_login_check, name='user_login'),
     path('user_logout', views.user_logout, name='user_logout'),

@@ -210,6 +210,19 @@ def admin_dataset_master_view(request):
     context = {'dataset_list':dm_l}
     return render(request, './myapp/admin_dataset_master_view.html',context)
 
+import os
+from .attrition_ml import *
+from project.settings import BASE_DIR
+
+def admin_dataset_master_train(request):
+    #dm_l = dataset_master.objects.all()
+    # csv_file='./dataset/WA_Fn-UseC_-HR-Employee-Attrition.csv'
+    data_file_path = os.path.join(BASE_DIR, 'dataset/WA_Fn-UseC_-HR-Employee-Attrition.csv')
+    model_file_path = os.path.join(BASE_DIR, 'dataset/')
+    train_model(data_file_path,model_file_path)
+    context = {'msg':'Model Trained'}
+    return render(request, './myapp/admin_msg.html',context)
+
 def admin_dataset_master_delete(request):
     id = request.GET.get('id')
     print("id="+id)
@@ -364,8 +377,128 @@ def staff_feedback_view(request):
     context = {'message_list': nm_l, 'user_list': cmd}
     return render(request, 'myapp/staff_feedback_view.html', context)
 
+# 4. query_history - id, user_id, staff_name, emp_code, Age,Attrition,BusinessTravel,DailyRate,Department,DistanceFromHome,Education,EducationField,EmployeeCount,EmployeeNumber,EnvironmentSatisfaction,Gender,HourlyRate,JobInvolvement,JobLevel,JobRole,JobSatisfaction,MaritalStatus,MonthlyIncome,MonthlyRate,NumCompaniesWorked,Over18,OverTime,PercentSalaryHike,PerformanceRating,RelationshipSatisfaction,StandardHours,StockOptionLevel,TotalWorkingYears,TrainingTimesLastYear,WorkLifeBalance,YearsAtCompany,YearsInCurrentRole,YearsSinceLastPromotion,YearsWithCurrManager, dt, tm, result, status
+from .models import query_history
+from .attrition_ml2 import *
+def staff_query_history_add(request):
+    if request.method == 'POST':
+        user_id = int(request.session['user_id'])
+        staff_name = request.POST.get('staff_name')
+        emp_code = request.POST.get('emp_code')
+        Age = request.POST.get('Age')
+        Attrition = 'none'#request.POST.get('Attrition')
+        BusinessTravel = request.POST.get('BusinessTravel')
+        DailyRate = request.POST.get('DailyRate')
+
+        Department = request.POST.get('Department')
+        DistanceFromHome = request.POST.get('DistanceFromHome')
+        Education = request.POST.get('Education')
+        EducationField = request.POST.get('EducationField')
+        EmployeeCount = request.POST.get('EmployeeCount')
+        EmployeeNumber = request.POST.get('EmployeeNumber')
+        EnvironmentSatisfaction = request.POST.get('EnvironmentSatisfaction')
+        Gender = request.POST.get('Gender')
+        HourlyRate = request.POST.get('HourlyRate')
+        JobInvolvement = request.POST.get('JobInvolvement')
+        JobLevel = request.POST.get('JobLevel')
+        JobRole = request.POST.get('JobRole')
+        JobSatisfaction = request.POST.get('JobSatisfaction')
+        MaritalStatus = request.POST.get('MaritalStatus')
+        MonthlyIncome = request.POST.get('MonthlyIncome')
+        MonthlyRate = request.POST.get('MonthlyRate')
+        NumCompaniesWorked = request.POST.get('NumCompaniesWorked')
+        Over18 = request.POST.get('Over18')
+        OverTime = request.POST.get('OverTime')
+        
+        PercentSalaryHike = request.POST.get('PercentSalaryHike')
+        PerformanceRating = request.POST.get('PerformanceRating')
+        RelationshipSatisfaction = request.POST.get('RelationshipSatisfaction')
+        StandardHours = request.POST.get('StandardHours')
+        StockOptionLevel = request.POST.get('StockOptionLevel')
+        
+        TotalWorkingYears = request.POST.get('TotalWorkingYears')
+        TrainingTimesLastYear = request.POST.get('TrainingTimesLastYear')
+        WorkLifeBalance = request.POST.get('WorkLifeBalance')
+        YearsAtCompany = request.POST.get('YearsAtCompany')
+        YearsInCurrentRole = request.POST.get('YearsInCurrentRole')
+        
+        YearsSinceLastPromotion = request.POST.get('YearsSinceLastPromotion')
+        YearsWithCurrManager = request.POST.get('YearsWithCurrManager')
+
+        # BusinessTravel_d ={'Travel_Rarely':0,'Travel_Frequently':1}
+        # Department_d ={'Sales':0,'Travel_Frequently':1}
+        # Gender_d ={'Male':0,'Female':1}
+        # MaritalStatus_d ={'Married':0,'Divorced':1,'Single':2}
+        # OverTime_d={'Yes':0,'No':1}
+
+        input_data = [Age,Attrition,BusinessTravel,DailyRate,Department,DistanceFromHome,Education,EducationField,EmployeeCount,EmployeeNumber,EnvironmentSatisfaction,Gender,HourlyRate,JobInvolvement,JobLevel,JobRole,JobSatisfaction,MaritalStatus,MonthlyIncome,MonthlyRate,NumCompaniesWorked,Over18,OverTime,PercentSalaryHike,PerformanceRating,RelationshipSatisfaction,StandardHours,StockOptionLevel,TotalWorkingYears,TrainingTimesLastYear,WorkLifeBalance,YearsAtCompany,YearsInCurrentRole,YearsSinceLastPromotion,YearsWithCurrManager
+]
+        data_file_path = os.path.join(BASE_DIR, 'dataset/WA_Fn-UseC_-HR-Employee-Attrition.csv')
+        model_file_path = os.path.join(BASE_DIR, 'dataset/data_set_svm.model')
+        results = get_prediction(csv_file=data_file_path, input_set=input_data)
+        print(results)
+        r = {1:'Yes',0:'No'}
+        #pr = predict_result(input_set=input_data, model_fname=model_file_path)
+        #41,Yes,Travel_Rarely,1102,Sales,1,2,Life Sciences,1,1,2,Female,94,3,2,Sales Executive,4,Single,5993,19479,8,Y,Yes,11,3,1,80,0,8,0,1,6,4,0,5
+
+        
+        
+        dt = datetime.today().strftime('%Y-%m-%d')
+        tm = datetime.today().strftime('%H:%M:%S')
+        status = 'Yes'
+        #"SVC",'LogisticRegression', 'DecisionTreeClassifier','RandomForestClassifier' 
+        result = f'''Report :
+        SVC: {r[results[0]]}, LogisticRegression: {r[results[1]]}, DecisionTreeClassifier: {r[results[2]]}, RandomForestClassifier: {r[results[3]]}'''
+        
+
+        qh_obj = query_history(
+            user_id=user_id, staff_name=staff_name, emp_code=emp_code,
+            Age=Age,Attrition=Attrition, BusinessTravel=BusinessTravel, 
+            DailyRate=DailyRate, Department=Department,
+            DistanceFromHome=DistanceFromHome, Education=Education,
+            EducationField=EducationField, EmployeeCount=EmployeeCount, 
+            EmployeeNumber=EmployeeNumber, EnvironmentSatisfaction=EnvironmentSatisfaction,
+            Gender=Gender,HourlyRate=HourlyRate, JobInvolvement=JobInvolvement,
+            JobLevel=JobLevel, JobRole=JobRole,  JobSatisfaction=JobSatisfaction,
+            MaritalStatus=MaritalStatus, MonthlyIncome=MonthlyIncome, MonthlyRate=MonthlyRate,
+            NumCompaniesWorked=NumCompaniesWorked, Over18=Over18, OverTime=OverTime,
+            PercentSalaryHike=PercentSalaryHike, PerformanceRating=PerformanceRating, 
+            RelationshipSatisfaction=RelationshipSatisfaction, StandardHours=StandardHours, 
+            StockOptionLevel=StockOptionLevel, TotalWorkingYears=TotalWorkingYears,
+            TrainingTimesLastYear=TrainingTimesLastYear, WorkLifeBalance=WorkLifeBalance,
+            YearsAtCompany=YearsAtCompany,YearsInCurrentRole=YearsInCurrentRole,
+            YearsSinceLastPromotion=YearsSinceLastPromotion, YearsWithCurrManager=YearsWithCurrManager,
+            dt=dt, tm=tm, result=result, status=status)
+        qh_obj.save()
+        
+        context = {'msg': result}
+        return render(request, 'myapp/staff_query_history_add.html',context)
+
+    else:
+        return render(request, 'myapp/staff_query_history_add.html')
+
+def staff_query_history_view(request):
+    user_id = int(request.session['user_id'])
+    dm_l = query_history.objects.filter(user_id=user_id)
+
+    context = {'dataset_list':dm_l}
+    return render(request, './myapp/staff_query_history_view.html',context)
+
+# def admin_dataset_master_delete(request):
+#     id = request.GET.get('id')
+#     print("id="+id)
+
+#     dm_obj = dataset_master.objects.get(id=int(id))
+#     dm_obj.delete()
+
+#     dm_l = dataset_master.objects.all()
+
+#     context = {'dataset_list':dm_l, 'msg':'Record deleted'}
+#     return render(request, './myapp/admin_dataset_master_view.html',context)
+
+
 ################################################################################
-############################### USER ###############################################
+############################### USER UNUSED ###############################################
 from .models import user_details
 
 def user_login_check(request):
